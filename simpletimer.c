@@ -4,6 +4,8 @@
 #include<linux/init.h>
 #include <linux/jiffies.h>
 
+#define TIME_INTERVAL 100000
+
 static struct timer_list hellotimer;
 
 void my_timer_handler(struct timer_list *unused)
@@ -18,7 +20,7 @@ static int  __init my_init_module(void)
   
   timer_setup(&hellotimer, my_timer_handler,0);
   add_timer(&hellotimer);
-  mod_timer(&hellotimer, jiffies + msecs_to_jiffies(100));
+  mod_timer(&hellotimer, jiffies + msecs_to_jiffies(TIME_INTERVAL));
   return 0;
 }
 
